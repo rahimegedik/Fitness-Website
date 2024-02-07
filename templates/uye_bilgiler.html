@@ -1,0 +1,73 @@
+{% extends "main_layout.html" %}
+
+{% block main %}
+
+<div class="user-info-card">
+    <div class="card">
+        <div class="card-header">
+            <h2>User Information Settings</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" action="{{ url_for('uye_bilgiler') }}">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" value="{{ user.UserName }}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" name="first_name" value="{{ user.FirstName }}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" name="last_name" value="{{ user.LastName }}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select name="gender" class="form-control">
+                        <option value="female" {% if user.Gender=='female' %} selected {% endif %}>Female</option>
+                        <option value="male" {% if user.Gender=='male' %} selected {% endif %}>Male</option>
+                        <option value="not_specified" {% if user.Gender not in ['female', 'male' ] %} selected {% endif
+                            %}>Not Specified</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" name="address" value="{{ user.Address }}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" value="{{ user.Email }}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="phone_number">Phone Number</label>
+                    <input type="text" name="phone_number" value="{{ user.PhoneNumber }}" class="form-control">
+                </div>
+
+                <!-- Password Update Section -->
+                <div class="password-update-section">
+                    <h3>Password Update</h3>
+                    <div class="form-group">
+                        <label for="current_password">Current Password</label>
+                        <input type="password" name="current_password" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="new_password">New Password</label>
+                        <input type="password" name="new_password" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_new_password">Confirm New Password</label>
+                        <input type="password" name="confirm_new_password" class="form-control">
+                    </div>
+                </div>
+
+                <!-- ... -->
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Update Profile">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

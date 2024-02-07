@@ -1,0 +1,37 @@
+{% extends "admin_layout.html" %}
+
+{% block main %}
+<h2>Customer List</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Gender</th>
+            <th>Address</th>
+            <th>Membership Start Date</th>
+            <th>Membership End Date</th>
+
+            <th>Activity Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for customer in customers %}
+        <tr>
+            <td>{{ customer.CustomerName }}</td>
+            <td>{{ customer.UserName }}</td>
+            <td>{{ customer.Email }}</td>
+            <td>{{ customer.PhoneNumber }}</td>
+            <td>{{ customer.Gender }}</td>
+            <td>{{ customer.Address }}</td>
+            <td>{{ customer.MembershipStartDate }}</td>
+            <td>{{ customer.MembershipEndDate }}</td>
+
+            <td>{{ customer.ActivityName }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

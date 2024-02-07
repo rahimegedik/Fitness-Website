@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Membership Plan</title>
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Edit Membership Plan</h2>
+
+        <form method="post" action="{{ url_for('edit_membership_plan', membership_plan_id=membership_plan.MembershipPlanID) }}">
+            <label for="membership_type">Membership Type:</label>
+            <input type="text" name="membership_type" id="membership_type" value="{{ membership_plan.MembershipType }}" required>
+
+            <label for="plan_description">Plan Description:</label>
+            <input type="text" name="plan_description" id="plan_description" value="{{ membership_plan.PlanDescription }}" required>
+
+            <label for="activity_access">Activity Access:</label>
+            <input type="number" name="activity_access" id="activity_access" value="{{ membership_plan.ActivityAccess }}" required>
+
+            <label for="private_lesson_access">Private Lesson Access:</label>
+            <input type="number" name="private_lesson_access" id="private_lesson_access" value="{{ membership_plan.PrivateLessonAccess }}" required>
+
+            <label for="price">Price (USD):</label>
+            <input type="number" name="price" id="price" value="{{ membership_plan.Price }}" required>
+
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+</body>
+</html>

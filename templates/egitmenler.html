@@ -1,0 +1,45 @@
+{% extends "main_layout.html" %}
+
+{% block main %}
+
+<div class="wrapper">
+  <div class="section">
+    <div class="container">
+      <h2 class="title">Instructors</h2>
+
+      <div class="row">
+        {% for instructor_activity in instructor_activities %}
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <div class="card-body">
+
+              <h3 class="card-title">{{ instructor_activity.FirstName }} {{ instructor_activity.LastName }}</h3>
+              <p class="instructor-email">
+                <a href="mailto:{{ instructor_activity.Email }}">{{ instructor_activity.Email }}</a>
+              </p>
+              {% if instructor_activity.ActivityName %}
+              <p class="instructor-activity">
+                Teaches: {{ instructor_activity.ActivityName }}
+              </p>
+              {% else %}
+              <p class="instructor-activity">No activities listed.</p>
+              {% endif %}
+            </div>
+            <style>
+              .card {
+                background-color: rgba(0, 0, 0, 0.5);
+              }
+
+              .card:hover {
+                background-color: rgba(33, 77, 105, 0.43);
+              }
+            </style>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

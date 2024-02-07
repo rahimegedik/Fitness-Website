@@ -1,0 +1,43 @@
+{% extends "main_layout.html" %}
+
+{% block main %}
+
+<!-- templates/activity_reviews.html -->
+<div class="container mt-5">
+    <h1 class="mb-4">Activity Reviews</h1>
+
+    <!-- List all activities with review and rating options -->
+    {% for activity in activities %}
+    <div class="card mb-4">
+        <div class="card-body">
+            <h3 class="card-title">{{ activity.ActivityName }}</h3>
+            <p class="card-text">{{ activity.Description }}</p>
+
+
+            <!-- Allow users to submit a new review and rating -->
+            <form action="{{ url_for('submit_activity_review', activity_id=activity.ActivityID) }}" method="post">
+                <div class="mb-3">
+                    <label for="review_text" class="form-label">Your Review:</label>
+                    <textarea class="form-control" name="review_text" id="review_text" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="rating" class="form-label">Rating:</label>
+                    <select class="form-select" name="rating" id="rating" required>
+                        <option value="" disabled selected>Select Rating</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit Review</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

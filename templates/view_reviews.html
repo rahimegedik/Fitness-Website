@@ -1,0 +1,90 @@
+{% extends "admin_layout.html" %}
+
+{% block main %}
+<h2>Reviews</h2>
+
+<!-- Activity Reviews -->
+<h3>Activity Reviews</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Activity</th>
+            <th>Review Text</th>
+            <th>Rating</th>
+            <th>Action</th> <!-- Yeni sütun eklendi -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for review in activity_reviews %}
+        <tr>
+            <td>{{ review.CustomerName }}</td>
+            <td>{{ review.ActivityName }}</td>
+            <td>{{ review.ReviewText }}</td>
+            <td>{{ review.Rating }}</td>
+            <td>
+                <form action="{{ url_for('delete_review', review_id=review.ReviewID) }}" method="post">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Instructor Reviews -->
+<h3>Instructor Reviews</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Instructor</th>
+            <th>Review Text</th>
+            <th>Rating</th>
+            <th>Action</th> <!-- Yeni sütun eklendi -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for review in instructor_reviews %}
+        <tr>
+            <td>{{ review.CustomerName }}</td>
+            <td>{{ review.InstructorName }}</td>
+            <td>{{ review.ReviewText }}</td>
+            <td>{{ review.Rating }}</td>
+            <td>
+                <form action="{{ url_for('delete_review', review_id=review.ReviewID) }}" method="post">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- General Gym Reviews -->
+<h3>General Gym Reviews</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Review Text</th>
+            <th>Rating</th>
+            <th>Action</th> <!-- Yeni sütun eklendi -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for review in general_reviews %}
+        <tr>
+            <td>{{ review.CustomerName }}</td>
+            <td>{{ review.ReviewText }}</td>
+            <td>{{ review.Rating }}</td>
+            <td>
+                <form action="{{ url_for('delete_review', review_id=review.ReviewID) }}" method="post">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

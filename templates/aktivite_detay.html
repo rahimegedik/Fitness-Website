@@ -1,0 +1,39 @@
+{% extends "main_layout.html" %}
+
+{% block main %}
+    <div class="wrapper">
+        <div class="section section-about-us">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto">
+                        <div class="card card-plain">
+                            <div class="card-body">
+                                <h2 class="title">{{ activity[1] }}</h2>
+                                <p class="description">{{ activity[2] }}</p>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <p class="description"><strong>Instructor:</strong> {{ instructor.FirstName }} {{ instructor.LastName }}</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="description"><strong>Day:</strong> Every {{ activity[5] }}</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="description"><strong>Time:</strong> {{ activity_time }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p class="description"> {{ activity[6] }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <a href="{{ url_for('aktiviteler') }}" class="btn btn-danger">Back to Activities</a> 
+    </div>
+{% endblock %}

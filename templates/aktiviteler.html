@@ -1,0 +1,27 @@
+{% extends "main_layout.html" %}
+
+{% block main %}
+<div class="section">
+    <div class="container">
+        <h2 class="title">Activities</h2>
+        <div class="row">
+            {% for activity in activities %}
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <img src="{{ activity.photo_path }}" alt="{{ activity.ActivityName }}" class="card-img-top">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ activity.ActivityName }}</h4>
+                        <p class="card-text">{{ activity.Description }}</p>
+                        {% if activity.Instructor %}
+                        <p class="card-text"><strong>Instructor:</strong> {{ activity.Instructor.FirstName }} {{ activity.Instructor.LastName }}</p>
+                        {% endif %}
+                        <a href="{{ url_for('aktivite_detay', activity_id=activity.ActivityID) }}" class="btn btn-danger">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

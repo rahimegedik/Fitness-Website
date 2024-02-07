@@ -1,0 +1,76 @@
+{% extends "main_layout.html" %}
+
+{% block main %}
+
+<h1>My Profile</h1>
+
+<div class="row">
+
+  <div class="col-md-3">
+    <div class="card user-info">
+      <div class="card-body">
+        <h2 class="card-title">Information</h2>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><strong>Name:</strong> {{ user.FirstName }} {{ user.LastName }}</li>
+          <li class="list-group-item"><strong>Email:</strong> {{ user.Email }}</li>
+          <li class="list-group-item"><strong>Gender:</strong> {{ user.Gender }}</li>
+          <li class="list-group-item"><strong>Phone Number:</strong> {{ user.PhoneNumber }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card activities">
+      <div class="card-body">
+        <h2 class="card-title">My Activities</h2>
+        <ul class="list-group list-group-flush">
+          {% for activity in activities %}
+          <li class="list-group-item">
+            {{ activity.ActivityName }}
+          </li>
+
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card activities">
+      <div class="card-body">
+        <h2 class="card-title">My Activities</h2>
+        <form action="/save_selected_activity" method="post">
+          <label for="selected_activity_id">Select Activity:</label>
+          <select name="selected_activity_id" id="selected_activity_id">
+            {% for activity in all_activities %}
+            <option value="{{ activity.ActivityID }}">{{ activity.ActivityName }}</option>
+            {% endfor %}
+          </select>
+          <button type="submit" class="btn btn-primary">Save Selected Activity</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card reviews">
+      <div class="card-body">
+        <h2 class="card-title">Add Reviews</h2>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <a href="/gym_reviews" class="btn btn-primary">Add Gym Reviews</a>
+          </li>
+          <li class="list-group-item">
+            <a href="/instructor_reviews" class="btn btn-primary">Add Instructor Reviews</a>
+          </li>
+          <li class="list-group-item">
+            <a href="/activity_reviews" class="btn btn-primary">Add Activity Reviews</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

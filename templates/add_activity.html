@@ -1,0 +1,45 @@
+{% extends "admin_layout.html" %}
+
+{% block main %}
+<h2>Add Activity</h2>
+
+<!-- Add Activity Form -->
+<form method="post">
+
+    <div class="mb-3">
+        <label for="activity_name" class="form-label">Activity Name</label>
+        <input type="text" class="form-control" id="activity_name" name="activity_name" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="instructor_id" class="form-label">Instructor</label>
+        <select class="form-select" id="instructor_id" name="instructor_id" required>
+            {% for instructor in instructors %}
+                <option value="{{ instructor.InstructorID }}">{{ instructor.InstructorName }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="activity_day" class="form-label">Activity Day</label>
+        <input type="text" class="form-control" id="activity_day" name="activity_day" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="detailed_description" class="form-label">Detailed Description</label>
+        <textarea class="form-control" id="detailed_description" name="detailed_description" rows="3" required></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="activity_time" class="form-label">Activity Time</label>
+        <input type="text" class="form-control" id="activity_time" name="activity_time" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Activity</button>
+</form>
+{% endblock %}

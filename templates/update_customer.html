@@ -1,0 +1,67 @@
+{% extends "admin_layout.html" %}
+
+{% block main %}
+  <h2>Update Customer</h2>
+
+  <!-- Update Customer Form -->
+  <form method="post">
+
+      <input type="hidden" name="_method" value="PUT">
+
+      <div class="mb-3">
+          <label for="first_name" class="form-label">First Name</label>
+          <input type="text" class="form-control" id="first_name" name="first_name" value="{{ customer.FirstName }}" >
+      </div>
+
+      <div class="mb-3">
+          <label for="last_name" class="form-label">Last Name</label>
+          <input type="text" class="form-control" id="last_name" name="last_name" value="{{ customer.LastName }}" >
+      </div>
+
+      <div class="mb-3">
+          <label for="user_name" class="form-label">User Name</label>
+          <input type="text" class="form-control" id="user_name" name="user_name" value="{{ customer.UserName }}" >
+      </div>
+
+      <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email" value="{{ customer.Email }}" >
+      </div>
+
+      <div class="mb-3">
+          <label for="phone_number" class="form-label">Phone Number</label>
+          <input type="tel" class="form-control" id="phone_number" name="phone_number" value="{{ customer.PhoneNumber }}">
+      </div>
+
+      <div class="mb-3">
+          <label for="gender" class="form-label">Gender</label>
+          <select class="form-select" id="gender" name="gender" required>
+              <option value="Male" {% if customer.Gender == 'Male' %}selected{% endif %}>Male</option>
+              <option value="Female" {% if customer.Gender == 'Female' %}selected{% endif %}>Female</option>
+              <option value="Other" {% if customer.Gender == 'Other' %}selected{% endif %}>Other</option>
+          </select>
+      </div>
+
+      <div class="mb-3">
+          <label for="address" class="form-label">Address</label>
+          <textarea class="form-control" id="address" name="address" rows="3" required>{{ customer.Address }}</textarea>
+      </div>
+
+      <div class="mb-3">
+          <label for="membership_start_date" class="form-label">Membership Start Date</label>
+          <input type="date" class="form-control" id="membership_start_date" name="membership_start_date" value="{{ customer.MembershipStartDate }}">
+      </div>
+
+      <div class="mb-3">
+          <label for="membership_end_date" class="form-label">Membership End Date</label>
+          <input type="date" class="form-control" id="membership_end_date" name="membership_end_date" value="{{ customer.MembershipEndDate }}">
+      </div>
+
+      <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Enter new password">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Update Customer</button>
+  </form>
+{% endblock %}

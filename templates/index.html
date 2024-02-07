@@ -1,0 +1,230 @@
+{% extends "main_layout.html" %}
+
+{% block main %}
+<!--giriş-->
+<div class="section section-image section-login">
+    <div class="container">
+        <h2 class="title">Fitness Center</h2>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-8 ml-auto mr-auto">
+                <div class="card card-login card-plain">
+                    <div class="card-header">
+                        <div class="logo-container">
+                            <img src="{{ url_for('static', filename='assets/img/indir.jpeg') }}"
+                                alt="Paper Kit 2 Logo" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-center">Welcome to our state-of-the-art Fitness Center! We are dedicated to
+                            providing a holistic approach to health and well-being.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-plain">
+                    <div class="card-header">
+                        <img src="{{ url_for('static', filename='assets/img/pexels-william-choquette-1954524.jpg') }}"
+                            alt="Premium Facilities" class="img-fluid">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Premium Facilities</h4>
+                        <p class="card-description">Our spacious and modern facilities are equipped with the latest
+                            fitness technology to meet all your exercise needs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-plain">
+                    <div class="card-header">
+                        <img src="{{ url_for('static', filename='assets/img/pexels-sabel-blanco-1480520.jpg') }}"
+                            alt="Expert Trainers" class="img-fluid">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Expert Trainers</h4>
+                        <p class="card-description">Our certified trainers are here to guide and support you on your
+                            fitness journey, ensuring you achieve your goals safely and effectively.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-plain">
+                    <div class="card-header">
+                        <img src="{{ url_for('static', filename='assets/img/pexels-victor-freitas-2261482.jpg') }}"
+                            alt="Varied Classes" class="img-fluid">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Varied Classes</h4>
+                        <p class="card-description">From invigorating cardio workouts to mind-soothing yoga
+                            sessions, we offer a diverse range of classes suitable for all fitness levels.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-md-6 ml-auto mr-auto">
+                <div class="card card-login card-plain">
+                    <div class="card-body">
+                        <p class="text-center">Join us and embark on a journey to a healthier and happier you!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<!-- Aktiviteler-->
+<div class="section">
+    <div class="container">
+        <h2 class="title">Activities</h2>
+        {% for activity in activities %}
+        <div class="card mb-4">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="{{ activity.photo_path }}" alt="{{ activity.ActivityName }}" class="img-fluid">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ activity.ActivityName }}</h4>
+                        <p class="card-text">{{ activity.Description }}</p>
+                        <!-- Add a link to the individual activity page -->
+                        <a href="{{ url_for('aktivite_detay', activity_id=activity.ActivityID) }}"
+                            class="btn btn-danger">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+<br>
+
+
+<!-- Yorumlar -->
+<div class="section section-reviews" style="background-color: #ffffff8d; padding: 40px 0;">
+    <div class="container">
+        <h2 class="title text-center" style="font-weight: bold; color: #333; margin-bottom: 30px;">
+            Reviews <i class="nucleo-icon nucleo-icon-quote-left"></i>
+        </h2>
+        <div id="review-slider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner text-center">
+                {% for review in reviews %}
+                <div class="carousel-item {% if loop.first %}active{% endif %}">
+                    <div class="card mb-4" style="background-color: #ef7272;">
+                        <div class="card-body">
+                            <blockquote class="blockquote">
+                                <p class="mb-0">
+                                    {{ review.ReviewText }}
+                                </p>
+                                <footer class="blockquote-footer">
+                                    {{ review.FirstName }} {{ review.LastName }}
+                                </footer>
+                            </blockquote>
+                            <div class="rating">
+                                {% for i in range(review.Rating) %}
+                                <i class="icon icon-star">&#9733</i>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <a class="carousel-control-prev" href="#review-slider" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></i></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#review-slider" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></i></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<br>
+
+<!-- Location ve Contact Form Bölümü -->
+<div class="section section-contact" style="background-image: url('path/to/subtle/background.jpg');">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-md-6 mb-4 mb-md-0">
+                <div class="card shadow-sm rounded-lg overflow-hidden">
+                    <div class="card-header bg-dark text-white text-center">
+                        <h4 class="my-0">Find Us</h4>
+                    </div>
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12739.067949906186!2d35.3850647!3d37.0392018!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15288dfe6499b935%3A0x564ce56afb1bdc8e!2sAdana%20Alparslan%20T%C3%BCrke%20Bilim%20ve%20Teknoloji%20%C3%9Cniversitesi!5e0!3m2!1str!2str"
+                            width="500" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Fitness Center</h5>
+                            <p class="card-text">Balcalı, Çatalan Cd., 01250 Sarıçam/Adana</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card shadow-sm rounded-lg">
+                    <div class="card-header bg-dark text-white text-center">
+                        <h4 class="my-0">Reach Out</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="https://formspree.io/f/myyqerbn" method="POST">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="first_name">First Name:</label>
+                                        <input type="text" class="form-control" id="first_name" name="first_name"
+                                            placeholder="John" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="last_name">Last Name:</label>
+                                        <input type="text" class="form-control" id="last_name" name="last_name"
+                                            placeholder="Doe" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Your Email:</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="john.doe@example.com" required>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <label for="message">Your Message:</label>
+                                <textarea class="form-control" id="message" name="message" rows="5"
+                                    placeholder="Your message here..." required></textarea>
+                            </div>
+
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br>
+<br>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "main_layout.html" %}
+
+{% block main %}
+<div id="container">
+    <h1>Membership Plans</h1>
+
+    <div class="card-deck">
+        {% for plan in membership_plans %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ plan.MembershipType }}</h5>
+                <p class="card-text">{{ plan.PlanDescription }}</p>
+                <p class="card-text">Price: ${{ plan.Price }}</p>
+                <form id="purchaseForm" action="/purchase_membership" method="post">
+                    <input type="hidden" name="plan_id" value="{{ plan.MembershipPlanID }}">
+                    <div class="form-group">
+                        <label for="duration_months">Duration (months):</label>
+                        <select class="form-control" name="duration_months" required>
+                            <option value="1">1 Month</option>
+                            <option value="6">6 Months (+1 month free)</option>
+                            <option value="12">12 Months (+3 months free)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Purchase</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

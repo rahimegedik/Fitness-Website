@@ -1,0 +1,16 @@
+{% extends "admin_layout.html" %}
+
+{% block main %}
+
+<h2>Update Private Lesson</h2>
+
+<form method="post" action="{{ url_for('update_private_lesson', lesson_id=lesson.LessonID) }}">
+    <label for="lesson_datetime">Lesson Date and Time:</label>
+    <input type="datetime-local" id="lesson_datetime" name="lesson_datetime" value="{{ lesson.LessonDateTime }}" required>
+
+    <!-- Diğer güncellenecek alanları buraya ekleyin -->
+
+    <input type="submit" value="Update">
+</form>
+
+{% endblock %}

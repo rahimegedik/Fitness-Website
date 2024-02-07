@@ -1,0 +1,37 @@
+{% extends "main_layout.html" %}
+
+{% block main %}
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h1 class="card-title">Membership Details</h1>
+      </div>
+      <div class="card-body">
+
+        <div class="customer-details">
+            <p><strong>Customer Name:</strong> {{ customer.FirstName }} {{ customer.LastName }}</p>
+        </div>
+
+        <div class="remaining-days">
+          <p><strong>Remaining Days:</strong> {{ remaining_days }}</p>
+        </div>
+
+        {% if payment_info %}
+          <div class="payment-info">
+            <p><strong>Plan Name:</strong> {{ payment_info.PlanName }}</p>
+            <p><strong>Fee:</strong> {{ payment_info.Fee }}</p>
+            <p><strong>Duration in Months:</strong> {{ payment_info.DurationInMonths }}</p>
+          </div>
+        {% else %}
+          <p class="no-payment-info">No payment information found.</p>
+        {% endif %}
+
+        <!-- İptal Etme Butonu Formu -->
+        <form method="post" action="{{ url_for('cancel_membership') }}">
+          <button type="submit" class="btn btn-danger">Cancel Membership</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+{% endblock %}

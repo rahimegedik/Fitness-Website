@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Confirmation</title>
+</head>
+<body>
+    <h1>Thank you for your purchase!</h1>
+    <p>You have successfully purchased the {{ membership_plan.MembershipType }} membership plan.</p>
+    <p>Membership start date: {{ start_date }}</p>
+    <p>Membership end date: {{ end_date }}</p>
+    <a href="{{ url_for('purchase_membership') }}">Back to Membership Plans</a>
+</body>
+</html>

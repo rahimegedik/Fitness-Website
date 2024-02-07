@@ -1,0 +1,47 @@
+{% extends "admin_layout.html" %}
+
+{% block main %}
+  <h2>Customers</h2>
+
+  <!-- Add Customer Button -->
+  <a href="{{ url_for('add_customer') }}" class="btn btn-primary mb-3">Add Customer</a>
+
+  <!-- Customers Table -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>User Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Gender</th>
+        <th>Address</th>
+        <th>Membership Start Date</th>
+        <th>Membership End Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for customer in customers %}
+        <tr>
+          <td>{{ customer.CustomerName }}</td>
+          <td>{{ customer.UserName }}</td>
+          <td>{{ customer.Email }}</td>
+          <td>{{ customer.PhoneNumber }}</td>
+          <td>{{ customer.Gender }}</td>
+          <td>{{ customer.Address }}</td>
+          <td>{{ customer.MembershipStartDate }}</td>
+          <td>{{ customer.MembershipEndDate }}</td>
+          <td>
+            <!-- Update Customer Button -->
+            <a href="{{ url_for('update_customer', customer_id=customer.CustomerID) }}" class="btn btn-warning btn-sm">Update</a>
+            <!-- Delete Customer Form -->
+            <form action="{{ url_for('delete_customer', customer_id=customer.CustomerID) }}" method="post" style="display: inline-block;">
+              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this customer?')">Delete</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

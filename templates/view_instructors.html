@@ -1,0 +1,37 @@
+{% extends "admin_layout.html" %}
+
+{% block main %}
+  <h2>View Instructors</h2>
+  <a href="{{ url_for('add_instructor') }}" class="btn btn-primary mb-3">Add Instructors</a>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>InstructorID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone Number</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for instructor in instructors %}
+        <tr>
+          <td>{{ instructor.InstructorID }}</td>
+          <td>{{ instructor.FirstName }}</td>
+          <td>{{ instructor.LastName }}</td>
+          <td>{{ instructor.PhoneNumber }}</td>
+          <td>{{ instructor.Email }}</td>
+          <td>{{ instructor.Gender }}</td>
+          <td>
+            <a href="{{ url_for('update_instructor', instructor_id=instructor.InstructorID) }}" class="btn btn-primary">Update</a>
+            <form action="{{ url_for('delete_instructor', instructor_id=instructor.InstructorID) }}" method="post" style="display: inline;">
+              <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this instructor?')">Delete</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

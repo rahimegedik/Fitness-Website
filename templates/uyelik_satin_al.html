@@ -1,0 +1,16 @@
+{% extends "main_layout.html" %}
+
+{% block main %}
+
+<div class="membership-wrap">
+    <div class="membership-html">
+        <!-- Üyelik Satın Alma Formu -->
+        <form method="post" action="{{ url_for('uyelik_satin_al') }}">
+            <div class="group">
+                <input type="submit" class="button" value="Purchase Membership">
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

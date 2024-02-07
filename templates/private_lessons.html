@@ -1,0 +1,34 @@
+{% extends "main_layout.html" %}
+
+{% block main %}
+<div class="container mt-5">
+    <h1>My Private Lessons</h1>
+
+    {% if user_private_lessons %}
+    <table class="table table-bordered mt-4">
+        <thead>
+            <tr>
+                <th>Lesson Date and Time</th>
+                <th>Instructor</th>
+                <th>Activity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lesson in user_private_lessons %}
+            <tr>
+                <td>{{ lesson.LessonDateTime }}</td>
+                <td>{{ lesson.InstructorFirstName }} {{ lesson.InstructorLastName }}</td>
+                <td>{{ lesson.ActivityName }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No private lessons found.</p>
+    {% endif %}
+
+    <form action="{{ url_for('private_lesson_reservation') }}" method="get" class="mt-4">
+        <button type="submit" class="btn btn-info">Make a New Reservation</button>
+    </form>
+</div>
+{% endblock %}

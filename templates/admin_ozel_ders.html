@@ -1,0 +1,41 @@
+{% extends "admin_layout.html" %}
+
+{% block main %}
+
+<h1>Admin Panel</h1>
+
+<!-- Display Private Lessons -->
+<div>
+    <h2>Private Lessons</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>LessonDateTime</th>
+                <th>CustomerID</th>
+                <th>InstructorID</th>
+                <th>ActivityID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for private_lesson in private_lessons %}
+            <tr>
+                <td>{{ private_lesson.LessonDateTime }}</td>
+                <td>{{ private_lesson.CustomerID }}</td>
+                <td>{{ private_lesson.InstructorID }}</td>
+                <td>{{ private_lesson.ActivityID }}</td>
+                <td>
+                    <a href="{{ url_for('update_private_lesson', lesson_id=private_lesson.LessonID) }}">Update</a>
+                    <form method="post" action="{{ url_for('delete_private_lesson', lesson_id=private_lesson.LessonID) }}" style="display:inline;">
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Diğer tabloları ekleyin -->
+
+{% endblock %}
